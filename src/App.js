@@ -21,10 +21,11 @@ class App extends Component {
 
     render() {
         const { data, daily } = this.state;
+        // console.log(typeof(daily));
         return (
                 <div className={styles.container}>
                 <Cards data={data} />
-                <Charts daily={daily} />
+                <Charts dailyData={daily} />
                 <CountryPicker/>
                 </div>
         );
