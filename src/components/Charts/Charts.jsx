@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2'
 
 import styles from './Charts.module.css'
 const Charts = ({dailyData}) => {
-    console.log(dailyData)
+    // console.log(dailyData)
     const slicedArray = dailyData.length ? dailyData.slice(Math.max(dailyData.length - 100, 0)) : null
     
     const lineChart = (
