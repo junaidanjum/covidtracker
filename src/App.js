@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {Cards, Charts, CountryPicker } from './components'
 import styles from './App.module.css'
 import { fetchData, fetchDaily, fetchCountry } from './api/index'
+import coronaImage from '../src/images/image.jpg'
 
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
     state = {
         data: {},
         daily: {},
-        country: []
+        country: [],
+        thiscountry: ''
     }
 
     async componentDidMount() {
@@ -21,18 +23,21 @@ class App extends Component {
         this.setState({data: fetchedData, daily: fetchedDaily, country: fetchedCountry});
     }
 
-    handleCountry(i) {
-        console.log(i)
+    handleCountry = async (country) => {
+        const fetchedData = await fetchData(country);
+        console.log(fetchedData);
+        this.setState({data: fetchedData, thiscountry: country})
     }
 
     render() {
-        const { data, daily, country } = this.state;
-        // console.log(country);
+        const { data, daily, country, thiscountry } = this.state;
+        console.log(this.state.thiscountry);
         return (
                 <div className={styles.container}>
+                <img src={coronaImage} alt='COVID-19' className={styles.image}/>
                 <Cards data={data} />
-                <Charts dailyData={daily} />
-                <CountryPicker country={country} handleCountry= {this.handleCountry}/>
+                <CountryPicker country={country} handleCountry={this.handleCountry}/>
+                <Charts dailyData={daily} data={data} thiscountry={thiscountry}/>
                 </div>
         );
     }

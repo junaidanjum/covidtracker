@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Line } from 'react-chartjs-2'
+import { Line, Bar } from 'react-chartjs-2'
 
 import styles from './Charts.module.css'
-const Charts = ({dailyData}) => {
+const Charts = ({dailyData, data, thiscountry}) => {
     // console.log(dailyData)
     const slicedArray = dailyData.length ? dailyData.slice(Math.max(dailyData.length - 100, 0)) : null
     
@@ -27,9 +27,29 @@ const Charts = ({dailyData}) => {
             }}
         />) : null
     )
+
+    const BarChart = (data.confirmed) ? (
+        <Bar
+            data={{
+                labels: ['Infected', 'Recovered', 'Deaths'],
+                datasets: [{
+                    label: 'People',
+                    backgroundColor: ['blue', 'green', 'red'],
+                    data: [data.confirmed.value, data.recovered.value, data.deaths.value]
+                }]
+            }} 
+            options= {{
+                legend: {display: false},
+                title: {display: true, text: `Current Situation in ${thiscountry}`}
+
+            }}
+        
+        />
+    ) : null
+
     return (
         <div className={styles.container}>
-            {lineChart}
+            {!(thiscountry) ? lineChart : BarChart}
         </div>
     );
 };

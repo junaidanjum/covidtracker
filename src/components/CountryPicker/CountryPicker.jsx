@@ -1,17 +1,17 @@
 import React from 'react';
+import { FormControl, NativeSelect } from '@material-ui/core'
+
+import styles from './CountryPicker.module.css'
 
 const CountryPicker = ({country, handleCountry}) => {
-    console.log("Country", country);
+    // console.log("Country", country);
     return (
-        country.length ? 
-        <div>
-            {country.map((item) => {
-                return (
-                    <p onClick={handleCountry(item.name)}> {item.name} </p>
-                )
-            })}
-        </div> : null
-        
+        <FormControl className={styles.formcontrol}> 
+            <NativeSelect onChange={(e)=> handleCountry(e.target.value)}>
+                <option value=""> Global </option>
+                {country.map(( country, i ) => <option value={country.name} key={i}> {country.name} </option>)}
+            </NativeSelect>
+        </FormControl>
     );
 };
 
