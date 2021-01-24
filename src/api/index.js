@@ -2,6 +2,16 @@ import axios from 'axios'
 
 const url = 'https://covid19.mathdro.id/api'
 
+const fetchContent = async () => {
+    try {
+        const data = await axios.get('http://localhost:4000/forms');
+        console.log(data)
+    } catch (error) {
+        console.log(error)   
+    }
+}
+
+
 const fetchData = async (country) => {
     let changedURL = url;
     if (country) {
@@ -38,4 +48,4 @@ const fetchCountry = async () => {
     }
 }
 
-export { fetchData, fetchDaily, fetchCountry }
+export { fetchData, fetchDaily, fetchCountry, fetchContent }
