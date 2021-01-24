@@ -1,5 +1,7 @@
 This project is a COVID 19 tracker that tracks the data of infections, recoveries, and deaths caused due to the coronavirus in real time. 
 
+To check the work in real time, click here: http://next-land.surge.sh/
+
 This page shows global data and gives the option to select a country and see the data of the country in arithmetic as well as in Bar Chart. 
 
 In the project directory, you can run:
